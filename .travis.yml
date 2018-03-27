@@ -16,8 +16,8 @@ script:
 - docker build -t $DOCKER_USERNAME/se234-lab10-client .
 - docker push $DOCKER_USERNAME/se234-lab10-client
 after_success:
-- docker stop htmltest
-- docker rm  htmltest
+- docker stop se234-lab10-client
+- docker rm  se234-lab10-client
 - docker run -p 8081:80 -d $DOCKER_USERNAME/se234-lab10-client:latest
 service: docker
 env:
