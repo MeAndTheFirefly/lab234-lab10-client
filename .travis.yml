@@ -6,7 +6,7 @@ cache:
   directories:
   - node_modules
 before_install:
-- docker login -u "$DOCKER_USERNAME" --password-stdin "$DOCKER_PASSWORD"
+- docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
 - npm i -D uglifyjs-webpack-plugin
 install:
 - npm install
@@ -16,7 +16,7 @@ script:
 - docker build -t $DOCKER_USERNAME/se234-lab10-client .
 - docker push $DOCKER_USERNAME/se234-lab10-client
 after_success:
-- docker run -p 8081:80 -d $DOCKER_USERNAME/se234-lab10-client:latest
+- docker run -p 8081:80 -d --name se234-lab10-client $DOCKER_USERNAME/se234-lab10-client:latest
 service: docker
 env:
   global:
